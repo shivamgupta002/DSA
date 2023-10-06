@@ -30,12 +30,13 @@ double accurateSolution(int n, int digit, double tempSolution)
 {
     double factor = 1;
     double ans = tempSolution;
-    for(int i=0;i<digit;i++){
-        factor=factor/10;
-        for (double j = ans;j*j<n; j+=factor)
+    for (int i = 0; i < digit; i++)
+    {
+        factor = factor / 10;
+        for (double j = ans; j * j < n; j += factor)
         {
-            ans=j;
-        }  
+            ans = j;
+        }
     }
     return ans;
 }
@@ -45,6 +46,5 @@ int main()
     cout << "Enter the number you want to SquareRoot = ";
     cin >> n;
     int tempSolution = squareRoot(n);
-    cout << "SquareRoot of given number is  = " <<accurateSolution(n, 3, tempSolution);
-    
+    cout << "SquareRoot of given number is  = " << accurateSolution(n, 3, tempSolution);
 }
