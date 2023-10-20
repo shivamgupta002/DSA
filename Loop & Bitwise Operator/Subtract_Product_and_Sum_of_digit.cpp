@@ -1,4 +1,5 @@
-/*
+/*'
+*** Leet code question 1281 ***
 n=234;
 product of digit=2*3*4=24;
 sum of digit=2+3+4=9;
