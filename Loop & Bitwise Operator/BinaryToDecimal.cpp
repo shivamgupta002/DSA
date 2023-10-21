@@ -16,7 +16,6 @@ int main()
         }
         n = n / 10;
         i++;
-        cout << ans << endl;
     }
     cout << "Final ans = " << ans << endl;
 }
