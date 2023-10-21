@@ -1,5 +1,8 @@
 /*
 Leet code problem number 7 (Reverse Integer)
+--------------------------
+input => n=5437
+output => 7345
 */
 #include <iostream>
 using namespace std;
