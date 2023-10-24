@@ -1,3 +1,11 @@
+/*
+Print the list of all pair of elements such that each sum of elements of each pair equals to target.
+Example->
+1 2 3 4 5 and target = 5
+output->
+1 4
+2 3
+*/
 #include <iostream>
 using namespace std;
 void inputArray(int arr[], int size)
