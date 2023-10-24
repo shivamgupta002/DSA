@@ -1,10 +1,6 @@
-/*
-n=6
-input =>   1 1 0 0 1 0
-output =>  0 0 0 1 1 1
-*/
 #include <iostream>
 using namespace std;
+
 void inputArray(int arr[], int size)
 {
     for (int i = 0; i < size; i++)
@@ -20,25 +16,31 @@ void printArray(int arr[], int size)
     }
     cout << endl;
 }
-void sort01(int arr[], int size)
+/*
+It will be sort by 3 approach
+ DNF (Dutch-National-Flag) Algorithm
+ Red - White - Blue Ball Questions
+ low - mid - high variables (3 pointers)
+*/
+void sort012(int arr[], int size)
 {
-    int start = 0;
-    int end = size - 1;
-    while (start <= end)
+    int l = 0, m = 0, h = size - 1;
+    while (m <= h)
     {
-        while (arr[start] == 0 && start <= end)
+        if (arr[m] == 0)
         {
-            start++;
+            swap(arr[l], arr[m]);
+            l++;
+            m++;
         }
-        while (arr[end] == 1 && start <= end)
+        else if (arr[m] == 1)
         {
-            end--;
+            m++;
         }
-        while (arr[start] == 1 && arr[end] == 0 && start <= end)
+        else if (arr[m] == 2)
         {
-            swap(arr[start], arr[end]);
-            start++;
-            end--;
+            swap(arr[m], arr[h]);
+            h--;
         }
     }
 }
@@ -56,7 +58,7 @@ int main()
     cout << "Array before sorting : ";
     printArray(arr, size);
 
-    sort01(arr, size);
+    sort012(arr, size);
 
     cout << "Array after sorting : ";
     printArray(arr, size);
