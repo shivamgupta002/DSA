@@ -22,7 +22,7 @@ int main()
     cout << "Enter the value of n : ";
     cin >> n;
 
-    // cout << "Nth Step : " << step(n) << endl;
+    cout << "Nth Step : " << step(n) << endl;
 
     return 0;
 }
