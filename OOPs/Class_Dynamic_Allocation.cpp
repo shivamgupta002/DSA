@@ -11,7 +11,7 @@ class Hero {
 int main() {
     Hero *h1 = new Hero;
     
-    h1->name = "Akash Gautam";
+    h1->name = "Shivam Gupta";
     h1->health = 100;
     h1->level  = 'A';
 
