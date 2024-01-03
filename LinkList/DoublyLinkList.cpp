@@ -14,6 +14,16 @@ public:
         this->previous = NULL;
         this->next = NULL;
     }
+    ~Node()
+    {
+        int val = this->data;
+        if (next != NULL)
+        {
+            delete next;
+            next = NULL;
+        }
+        cout << "Memory free  for node with data " << val << endl;
+    }
 };
 
 // Print By Head (Ascending order)
@@ -98,6 +108,38 @@ void InsertAtPosition(Node *&head, Node *&tail, int data, int position)
     nodeToInsert->previous = temp;
 }
 
+// Deletion at Head
+void DeleteNode(int position, Node *&head)
+{
+    // Deletion at First Node
+    if (position == 1)
+    {
+        Node *temp = head;
+        temp->next->previous = NULL;
+        head = temp->next;
+        temp->next = NULL;
+        delete temp;
+        return;
+    }
+    else
+    {
+        // Deletion at Any Node or Last Node
+        Node *current = head;
+        Node *previous = NULL;
+        int count = 1;
+        while (count < position)
+        {
+            previous = current;
+            current = current->next;
+            count++;
+        }
+        current->previous = NULL;
+        previous->next = current->next;
+        current->next = NULL;
+        delete current;
+    }
+}
+
 // Main Function
 int main()
 {
@@ -113,6 +155,16 @@ int main()
     printHead(head);
     cout << "Inserting 8 at position 4 : " << endl;
     InsertAtPosition(head, tail, 8, 4);
+    printHead(head);
+
+    // cout << "Delete at position 1 : " << endl;
+    // DeleteNode(1, head);
+    // printHead(head);
+    // cout << head->data << endl;
+    // cout << tail->data << endl;
+
+    cout << "Delete at position 2 : " << endl;
+    DeleteNode(2, head);
     printHead(head);
 
     return 0;
