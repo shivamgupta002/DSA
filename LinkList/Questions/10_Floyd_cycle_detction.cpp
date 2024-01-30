@@ -1,11 +1,10 @@
 /*
-T.C -> O(n)
-S.C -> O(n)
+T>C->O(n)
+S>C->O(1)
 */
 
 #include <iostream>
 #include <Math.h>
-#include <map>
 using namespace std;
 
 class Node
@@ -46,23 +45,26 @@ void printList(Node *head)
 }
 
 // Cyclic Node or not
-bool isCyclic(Node *head)
+bool floydDetectLoop(Node* head)
 {
     if (head == NULL)
     {
         return false;
     }
-    map<Node *, bool> visited;
-    Node *temp = head;
-
-    while (temp != NULL)
+    Node *slow = head;
+    Node *fast = head;
+    while (slow != NULL && fast != NULL)
     {
-        if (visited[temp] == true)
+        fast = fast->next;
+        slow = slow->next;
+        if (fast != NULL)
+        {
+            fast = fast->next;
+        }
+        if (slow == fast)
         {
             return true;
         }
-        visited[temp] = true;
-        temp = temp->next;
     }
     return false;
 }
@@ -77,9 +79,9 @@ int main()
         insertAtTail(tail, pow(2, i));
     }
     printList(head);
-    //  tail->next = head->next->next->next;
+    // tail->next = head->next->next->next;
 
-    if (isCyclic(head))
+    if (floydDetectLoop(head))
     {
         cout << "Cycle is present!" << endl;
     }
@@ -87,6 +89,5 @@ int main()
     {
         cout << "Cycle is not present!" << endl;
     }
-
     return 0;
 }
