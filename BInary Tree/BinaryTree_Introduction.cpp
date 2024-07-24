@@ -21,7 +21,7 @@ public:
 node *buildTree(node *root)
 {
     int data;
-    cout << "Enter data : " <<endl;
+    cout << "Enter data : " << endl;
     cin >> data;
 
     root = new node(data);
@@ -124,12 +124,51 @@ void postOrder(node *root)
     cout << root->data << " ";
 }
 
+// Build From Level Order
+void buildFromLevelOrder(node *&root)
+{
+    queue<node *> q;
+    cout << "Enter data for root : " ;
+    int data;
+    cin >> data;
+    root = new node(data);
+    q.push(root);
+
+    while (!q.empty())
+    {
+        node *temp = q.front();
+        q.pop();
+        cout << "Enter left node of " << temp->data << " : " ;
+        int leftData;
+        cin >> leftData;
+
+        if (leftData != -1)
+        {
+            temp->left = new node(leftData);
+            q.push(temp->left);
+        }
+
+        cout << "Enter right node of " << temp->data << " : " ;
+        int rightData;
+        cin >> rightData;
+
+        if (rightData != -1)
+        {
+            temp->right = new node(rightData);
+            q.push(temp->right);
+        }
+    }
+}
+
 int main()
 {
     node *root = NULL;
     // 1 3 7 -1 -1 11 -1 -1 5 17 -1 -1 -1
     // Creating a tree
-    root = buildTree(root);
+    // root = buildTree(root);
+
+    // Build From Level Order
+    buildFromLevelOrder(root);
 
     // level order Traversal
     levelOrderTraversal(root);
@@ -146,6 +185,6 @@ int main()
 
     // // PostOrder Traversal
     cout << endl;
-    cout << " PostOrder Traversal : ";
+    cout << "PostOrder Traversal : ";
     postOrder(root);
 }
