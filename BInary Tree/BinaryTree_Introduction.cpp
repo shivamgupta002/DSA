@@ -1,4 +1,5 @@
 #include <iostream>
+#include <queue>
 using namespace std;
 
 class node
@@ -37,10 +38,56 @@ node *buildTree(node *root)
 
     return root;
 }
+// Also known as-> Breadth first search
+void levelOrderTraversal(node *root)
+{
+    queue<node *> q;
+    q.push(root);
+    q.push(NULL);
 
+    while (!q.empty())
+    {
+        node *temp = q.front();
+        q.pop();
+
+        if (temp == NULL)
+        { // purana level complete traverse ho gya
+
+            cout << endl;
+            if (!q.empty())
+            {
+                // queue still has some child
+                q.push(NULL);
+            }
+        }
+        else
+        {
+            cout << temp->data << " ";
+            if (temp->left)
+            {
+                q.push(temp->left);
+            }
+            if (temp->right)
+            {
+                q.push(temp->right);
+            }
+        }
+    }
+}
 int main()
 {
     node *root = NULL;
     // Creating a tree
     root = buildTree(root);
+
+    // 1 3 7 -1 -1 11 -1 -1 5 17 -1 -1 -1
+
+    // level order Traversal
+    levelOrderTraversal(root);
+    /*
+    output ->
+    1
+    3 5
+    7 11 17
+    */
 }
