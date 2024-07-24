@@ -74,13 +74,12 @@ void levelOrderTraversal(node *root)
         }
     }
 }
+
 int main()
 {
     node *root = NULL;
     // Creating a tree
     root = buildTree(root);
-
-    // 1 3 7 -1 -1 11 -1 -1 5 17 -1 -1 -1
 
     // level order Traversal
     levelOrderTraversal(root);
