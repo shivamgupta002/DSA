@@ -21,7 +21,7 @@ public:
 node *buildTree(node *root)
 {
     int data;
-    cout << "Enter data : ";
+    cout << "Enter data : " <<endl;
     cin >> data;
 
     root = new node(data);
@@ -38,6 +38,7 @@ node *buildTree(node *root)
 
     return root;
 }
+
 // Also known as-> Breadth first search
 void levelOrderTraversal(node *root)
 {
@@ -75,18 +76,76 @@ void levelOrderTraversal(node *root)
     }
 }
 
+// InOrder Traversal
+
+void inOrder(node *root)
+{
+    // L N R
+
+    // base case
+    if (root == NULL)
+    {
+        return;
+    }
+    inOrder(root->left);
+    cout << root->data << " ";
+    inOrder(root->right);
+}
+
+// preOrder Traversal
+
+void preOrder(node *root)
+{
+    // N L R
+
+    // base case
+    if (root == NULL)
+    {
+        return;
+    }
+    cout << root->data << " ";
+    preOrder(root->left);
+    preOrder(root->right);
+}
+
+// PostOrder Traversal
+
+void postOrder(node *root)
+{
+    // L R N
+
+    // base case
+    if (root == NULL)
+    {
+        return;
+    }
+    postOrder(root->left);
+    postOrder(root->right);
+    cout << root->data << " ";
+}
+
 int main()
 {
     node *root = NULL;
+    // 1 3 7 -1 -1 11 -1 -1 5 17 -1 -1 -1
     // Creating a tree
     root = buildTree(root);
 
     // level order Traversal
     levelOrderTraversal(root);
-    /*
-    output ->
-    1
-    3 5
-    7 11 17
-    */
+
+    // inOrder Traversal
+    cout << endl;
+    cout << "InOrder Traversal : ";
+    inOrder(root);
+
+    // preOrder Traversal
+    cout << endl;
+    cout << "PreOrder Traversal : ";
+    preOrder(root);
+
+    // // PostOrder Traversal
+    cout << endl;
+    cout << " PostOrder Traversal : ";
+    postOrder(root);
 }
